@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "hotwire-rails", "~> 0.1.3"
 
 gem "devise", "~> 4.8"
+
+gem "tailwindcss-rails", "~> 0.3.3"
