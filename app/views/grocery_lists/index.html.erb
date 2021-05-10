@@ -10,7 +10,7 @@
     <% @grocery_lists.each do |grocery_list| %>
       <tr class="border border-yellow-500">
         <td class="text-lg"><%= grocery_list.name %></td>
-        <td class="p-1"><%= link_to 'View', grocery_list, class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %></td>
+        <td class="p-1"><%= link_to 'View', grocery_list, class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded text-green visited:text-white" %></td>
         <td class="p-1"><%= link_to 'Edit', edit_grocery_list_path(grocery_list), class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase m-auto p-1 rounded" %></td>
         <td class="p-1"><%= link_to 'Delete', grocery_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase m-auto p-1 rounded" %></td>
       </tr>
