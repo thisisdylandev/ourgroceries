@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "main#index"
   resources :user_grocery_lists
   resources :grocery_items
   resources :grocery_lists

@@ -1,29 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Grocery Lists</h1>
-
-<table>
+<table class="border-collapse border border-yellow-500 table-auto w-full">
   <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+    <th class="w-1/2 text-xl">Grocery Lists</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    </thead>
   <tbody>
     <% @grocery_lists.each do |grocery_list| %>
-      <tr>
-        <td><%= grocery_list.user_id %></td>
-        <td><%= grocery_list.name %></td>
-        <td><%= link_to 'Show', grocery_list %></td>
-        <td><%= link_to 'Edit', edit_grocery_list_path(grocery_list) %></td>
-        <td><%= link_to 'Destroy', grocery_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <tr class="border border-yellow-500">
+        <td class="text-lg"><%= grocery_list.name %></td>
+        <td class="p-1"><%= link_to 'View', grocery_list, class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %></td>
+        <td class="p-1"><%= link_to 'Edit', edit_grocery_list_path(grocery_list), class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase m-auto p-1 rounded" %></td>
+        <td class="p-1"><%= link_to 'Delete', grocery_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-center block bg-yellow-500 hover:bg-yellow-700 uppercase m-auto p-1 rounded" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Grocery List', new_grocery_list_path %>
