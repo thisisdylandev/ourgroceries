@@ -1,0 +1,31 @@
+<section class="flex items-center h-screen w-full">
+  <div class="w-1/2 m-auto bg-white rounded shadow-lg p-8 m-4">
+    <h2 class="block w-full text-center text-xl mb-6 text-grey-600">Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "mb-6"}) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+
+      <div class="field flex flex-col mb-4">
+        <%= f.label :email, class: "text-lg text-grey-600" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border py-2 px-3" %>
+      </div>
+
+      <div class="field flex flex-col mb-4">
+        <%= f.label :password, class: "text-lg text-grey-600" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "border py-2 px-3" %>
+      </div>
+
+      <div class="field flex flex-col mb-4">
+        <%= f.label :password_confirmation, class: "text-lg text-grey-600" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border py-2 px-3" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class:"block bg-yellow-500 hover:bg-yellow-700 text-white uppercase text-lg mx-auto p-4 rounded" %>
+      </div>
+    <% end %>
+    <%= render "users/shared/links" %>
+  </div>
+</section>
