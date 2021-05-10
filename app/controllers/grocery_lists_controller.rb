@@ -1,4 +1,5 @@
 class GroceryListsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_grocery_list, only: %i[ show edit update destroy ]
 
   # GET /grocery_lists or /grocery_lists.json
@@ -22,11 +23,12 @@ class GroceryListsController < ApplicationController
   # POST /grocery_lists or /grocery_lists.json
   def create
     @grocery_list = GroceryList.new(grocery_list_params)
+    @grocery_list.user = current_user
 
     respond_to do |format|
       if @grocery_list.save
         format.html { redirect_to @grocery_list, notice: "Grocery list was successfully created." }
-        format.json { render :show, status: :created, location: @grocery_list }
+        format.json { render :index, status: :created, location: @grocery_list }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @grocery_list.errors, status: :unprocessable_entity }
@@ -64,6 +66,6 @@ class GroceryListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def grocery_list_params
-      params.require(:grocery_list).permit(:user_id, :name)
+      params.require(:grocery_list).permit(:name)
     end
 end

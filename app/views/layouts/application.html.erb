@@ -12,6 +12,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: "shared/navbar" %>
+    <section class="flex items-center h-screen w-full">
+      <div class="w-1/2 m-auto bg-white rounded shadow-lg p-8 m-4">
+        <%= yield %>
+      </div>
+    </section>
   </body>
 </html>
