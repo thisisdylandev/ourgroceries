@@ -1,58 +1,28 @@
 class GroceryItemsController < ApplicationController
-  before_action :set_grocery_item, only: %i[ show edit update destroy ]
-
-  # GET /grocery_items or /grocery_items.json
-  def index
-    @grocery_items = GroceryItem.all
-  end
-
-  # GET /grocery_items/1 or /grocery_items/1.json
-  def show
-  end
-
-  # GET /grocery_items/new
-  def new
-    @grocery_item = GroceryItem.new
-  end
-
-  # GET /grocery_items/1/edit
-  def edit
-  end
+  before_action :authenticate_user!
 
   # POST /grocery_items or /grocery_items.json
   def create
-    @grocery_item = GroceryItem.new(grocery_item_params)
+    set_grocery_list
+    @grocery_item = @grocery_list.grocery_items.new(grocery_item_params)
+    @grocery_item.user = current_user
 
     respond_to do |format|
       if @grocery_item.save
-        format.html { redirect_to @grocery_item, notice: "Grocery item was successfully created." }
-        format.json { render :show, status: :created, location: @grocery_item }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "grocery_items/form", locals: { grocery_list: @grocery_list, grocery_item: GroceryItem.new}) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @grocery_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /grocery_items/1 or /grocery_items/1.json
-  def update
-    respond_to do |format|
-      if @grocery_item.update(grocery_item_params)
-        format.html { redirect_to @grocery_item, notice: "Grocery item was successfully updated." }
-        format.json { render :show, status: :ok, location: @grocery_item }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @grocery_item.errors, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "grocery_items/form", locals: { grocery_list: @grocery_list, grocery_item: @grocery_item}) }
       end
     end
   end
 
   # DELETE /grocery_items/1 or /grocery_items/1.json
   def destroy
+    puts params
+    set_grocery_item
     @grocery_item.destroy
     respond_to do |format|
-      format.html { redirect_to grocery_items_url, notice: "Grocery item was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@grocery_item) }
     end
   end
 
@@ -60,6 +30,10 @@ class GroceryItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_grocery_item
       @grocery_item = GroceryItem.find(params[:id])
+    end
+
+    def set_grocery_list
+      @grocery_list = GroceryList.find(params[:grocery_list_id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -60,3 +60,5 @@ gem "hotwire-rails", "~> 0.1.3"
 gem "devise", "~> 4.8"
 
 gem "tailwindcss-rails", "~> 0.3.3"
+
+gem "font-awesome-rails", "~> 4.7"
