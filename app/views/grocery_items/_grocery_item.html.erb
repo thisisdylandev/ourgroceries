@@ -1,0 +1,8 @@
+<%= tag.div id: dom_id(grocery_item) do %>
+  <div class="flex mt-2">
+    <input type="checkbox" class="form-checkbox h-5 w-5 mx-3 bg-yellow-500" checked>
+    <h3 class="flex-1"><%= grocery_item.name %></h3>
+    <p><%= grocery_item.amount %></p>        
+    </label>
+  </div>
+<% end %>

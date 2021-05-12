@@ -9,6 +9,7 @@ class GroceryListsController < ApplicationController
 
   # GET /grocery_lists/1 or /grocery_lists/1.json
   def show
+    @grocery_items = @grocery_list.grocery_items
   end
 
   # GET /grocery_lists/new

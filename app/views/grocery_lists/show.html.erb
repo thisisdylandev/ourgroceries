@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @grocery_list.user_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @grocery_list.name %>
-</p>
-
-<%= link_to 'Edit', edit_grocery_list_path(@grocery_list) %> |
-<%= link_to 'Back', grocery_lists_path %>
+<h1 class="block w-full text-center text-xl mb-2 text-grey-600"><%= @grocery_list.name %></h1>
+<section class="flex">
+  <%= link_to 'Add', edit_grocery_list_path(@grocery_list), class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
+  <%= link_to 'Edit', edit_grocery_list_path(@grocery_list), class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
+  <%= link_to 'Back', grocery_lists_path, class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
+  <%= link_to 'Delete', @grocery_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
+</section>
+<%= turbo_stream_from @grocery_list %>
+<div id="grocery_items">
+ <%= render @grocery_items %>
+</div>
