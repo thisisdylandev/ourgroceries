@@ -28,7 +28,7 @@ class GroceryListsController < ApplicationController
 
     respond_to do |format|
       if @grocery_list.save
-        format.html { redirect_to @grocery_list, notice: "Grocery list was successfully created." }
+        format.html { redirect_to grocery_lists_url, notice: "Grocery list was successfully created." }
         format.json { render :index, status: :created, location: @grocery_list }
       else
         format.html { render :new, status: :unprocessable_entity }
