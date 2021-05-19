@@ -1,0 +1,4 @@
+<h1 class="block w-full text-center text-xl mb-6 text-grey-600">Share Grocery List</h1>
+<%= render 'form', locals: { grocery_list: @grocery_list, invitation: Invitation.new } %>
+
+<%= link_to 'Back', grocery_list_path(params[:grocery_list_id]), class: "text-lg text-yellow-600 hover:text-yellow-400 hover:bg-transparent" %>

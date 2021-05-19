@@ -7,11 +7,15 @@ class GroceryListsController < ApplicationController
     # @grocery_lists = GroceryList.all.where(user: current_user)
     @user_grocery_lists = UserGroceryList.all.where(user: current_user)
     @grocery_lists = GroceryList.where(id: @user_grocery_lists.map(&:grocery_list_id))
+    @invitations = Invitation.where(invitee: current_user, accepted: false)
   end
 
   # GET /grocery_lists/1 or /grocery_lists/1.json
   def show
     @grocery_items = @grocery_list.grocery_items
+    @invitation = Invitation.new
+    @invitation.user = current_user
+    @invitation.grocery_list = @grocery_list
   end
 
   # GET /grocery_lists/new

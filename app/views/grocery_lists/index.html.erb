@@ -6,3 +6,9 @@
 <div id="grocery_lists">
   <%= render @grocery_lists %>
 </div>
+
+<% if @invitations.count > 0 %>
+  <hr class="h-px my-6"/>
+  <h2 class="block w-full text-center text-xl mb-6 text-grey-600">Pending Invitations</h2>
+  <%= render @invitations %>
+<% end %>
