@@ -4,7 +4,9 @@ class GroceryListsController < ApplicationController
 
   # GET /grocery_lists or /grocery_lists.json
   def index
-    @grocery_lists = GroceryList.all
+    # @grocery_lists = GroceryList.all.where(user: current_user)
+    @user_grocery_lists = UserGroceryList.all.where(user: current_user)
+    @grocery_lists = GroceryList.where(id: @user_grocery_lists.map(&:grocery_list_id))
   end
 
   # GET /grocery_lists/1 or /grocery_lists/1.json
@@ -25,9 +27,13 @@ class GroceryListsController < ApplicationController
   def create
     @grocery_list = GroceryList.new(grocery_list_params)
     @grocery_list.user = current_user
+    @user_grocery_list = UserGroceryList.new
+    @user_grocery_list.grocery_list = @grocery_list
+    @user_grocery_list.user = current_user
 
     respond_to do |format|
       if @grocery_list.save
+        @user_grocery_list.save
         format.html { redirect_to grocery_lists_url, notice: "Grocery list was successfully created." }
         format.json { render :index, status: :created, location: @grocery_list }
       else
