@@ -29,7 +29,14 @@ class InvitationsController < ApplicationController
     logger.info(@invitation.inspect)
     respond_to do |format|
       if @invitation.update({:accepted=>true})
-        format.html { redirect_to grocery_lists_path, notice: "Invitation was accepted." }
+        @user_grocery_list = @user_grocery_list = UserGroceryList.new
+        @user_grocery_list.user = current_user
+        @user_grocery_list.grocery_list = @invitation.grocery_list
+        if @user_grocery_list.save
+          format.html { redirect_to grocery_lists_path, notice: "Invitation was accepted." }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

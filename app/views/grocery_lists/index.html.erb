@@ -7,8 +7,12 @@
   <%= render @grocery_lists %>
 </div>
 
-<% if @invitations.count > 0 %>
-  <hr class="h-px my-6"/>
-  <h2 class="block w-full text-center text-xl mb-6 text-grey-600">Pending Invitations</h2>
-  <%= render @invitations %>
-<% end %>
+<%= turbo_stream_from @grocery_lists %>
+  <div id="invitations">
+    <hr class="h-px my-6"/>
+    <h2 class="block w-full text-center text-xl mb-6 text-grey-600">Pending Invitations</h2>
+    <%= render @invitations %>
+    <% if @invitations.count <= 0 %>
+      <p class="block w-full text-center text-md mb-6 text-grey-600">No pending invites!</p>
+    <% end %>
+  </div>
