@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root to: "main#index"
+  root to: 'main#index'
   resources :user_grocery_lists
   resources :grocery_lists do
     resources :grocery_items

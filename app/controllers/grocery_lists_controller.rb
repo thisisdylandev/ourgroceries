@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class GroceryListsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_grocery_list, only: %i[ show edit update destroy ]
+  before_action :set_grocery_list, only: %i[show edit update destroy]
 
   # GET /grocery_lists or /grocery_lists.json
   def index
@@ -24,8 +26,7 @@ class GroceryListsController < ApplicationController
   end
 
   # GET /grocery_lists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /grocery_lists or /grocery_lists.json
   def create
@@ -38,7 +39,7 @@ class GroceryListsController < ApplicationController
     respond_to do |format|
       if @grocery_list.save
         @user_grocery_list.save
-        format.html { redirect_to grocery_lists_url, notice: "Grocery list was successfully created." }
+        format.html { redirect_to grocery_lists_url, notice: 'Grocery list was successfully created.' }
         format.json { render :index, status: :created, location: @grocery_list }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +52,7 @@ class GroceryListsController < ApplicationController
   def update
     respond_to do |format|
       if @grocery_list.update(grocery_list_params)
-        format.html { redirect_to @grocery_list, notice: "Grocery list was successfully updated." }
+        format.html { redirect_to @grocery_list, notice: 'Grocery list was successfully updated.' }
         format.json { render :show, status: :ok, location: @grocery_list }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,19 +65,20 @@ class GroceryListsController < ApplicationController
   def destroy
     @grocery_list.destroy
     respond_to do |format|
-      format.html { redirect_to grocery_lists_url, notice: "Grocery list was successfully destroyed." }
+      format.html { redirect_to grocery_lists_url, notice: 'Grocery list was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_grocery_list
-      @grocery_list = GroceryList.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def grocery_list_params
-      params.require(:grocery_list).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_grocery_list
+    @grocery_list = GroceryList.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def grocery_list_params
+    params.require(:grocery_list).permit(:name)
+  end
 end

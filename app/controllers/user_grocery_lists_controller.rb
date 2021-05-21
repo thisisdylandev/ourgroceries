@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UserGroceryListsController < ApplicationController
-  before_action :set_user_grocery_list, only: %i[ show edit update destroy ]
+  before_action :set_user_grocery_list, only: %i[show edit update destroy]
 
   # GET /user_grocery_lists or /user_grocery_lists.json
   def index
@@ -7,8 +9,7 @@ class UserGroceryListsController < ApplicationController
   end
 
   # GET /user_grocery_lists/1 or /user_grocery_lists/1.json
-  def show
-  end
+  def show; end
 
   # GET /user_grocery_lists/new
   def new
@@ -16,8 +17,7 @@ class UserGroceryListsController < ApplicationController
   end
 
   # GET /user_grocery_lists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /user_grocery_lists or /user_grocery_lists.json
   def create
@@ -25,7 +25,7 @@ class UserGroceryListsController < ApplicationController
 
     respond_to do |format|
       if @user_grocery_list.save
-        format.html { redirect_to @user_grocery_list, notice: "User grocery list was successfully created." }
+        format.html { redirect_to @user_grocery_list, notice: 'User grocery list was successfully created.' }
         format.json { render :show, status: :created, location: @user_grocery_list }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class UserGroceryListsController < ApplicationController
   def update
     respond_to do |format|
       if @user_grocery_list.update(user_grocery_list_params)
-        format.html { redirect_to @user_grocery_list, notice: "User grocery list was successfully updated." }
+        format.html { redirect_to @user_grocery_list, notice: 'User grocery list was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_grocery_list }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +51,20 @@ class UserGroceryListsController < ApplicationController
   def destroy
     @user_grocery_list.destroy
     respond_to do |format|
-      format.html { redirect_to user_grocery_lists_url, notice: "User grocery list was successfully destroyed." }
+      format.html { redirect_to user_grocery_lists_url, notice: 'User grocery list was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_grocery_list
-      @user_grocery_list = UserGroceryList.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_grocery_list_params
-      params.require(:user_grocery_list).permit(:user_id, :grocery_list_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_grocery_list
+    @user_grocery_list = UserGroceryList.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_grocery_list_params
+    params.require(:user_grocery_list).permit(:user_id, :grocery_list_id)
+  end
 end

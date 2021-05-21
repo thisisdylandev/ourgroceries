@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GroceryItemsController < ApplicationController
   before_action :authenticate_user!
 
@@ -9,16 +11,21 @@ class GroceryItemsController < ApplicationController
 
     respond_to do |format|
       if @grocery_item.save
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "grocery_items/form", locals: { grocery_list: @grocery_list, grocery_item: GroceryItem.new}) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('form', partial: 'grocery_items/form',
+                                                            locals: { grocery_list: @grocery_list, grocery_item: GroceryItem.new })
+        end
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "grocery_items/form", locals: { grocery_list: @grocery_list, grocery_item: @grocery_item}) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('form', partial: 'grocery_items/form',
+                                                            locals: { grocery_list: @grocery_list, grocery_item: @grocery_item })
+        end
       end
     end
   end
 
   # DELETE /grocery_items/1 or /grocery_items/1.json
   def destroy
-    puts params
     set_grocery_item
     @grocery_item.destroy
     respond_to do |format|
@@ -27,17 +34,18 @@ class GroceryItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_grocery_item
-      @grocery_item = GroceryItem.find(params[:id])
-    end
 
-    def set_grocery_list
-      @grocery_list = GroceryList.find(params[:grocery_list_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_grocery_item
+    @grocery_item = GroceryItem.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def grocery_item_params
-      params.require(:grocery_item).permit(:grocery_list_id, :user_id, :name, :amount, :active)
-    end
+  def set_grocery_list
+    @grocery_list = GroceryList.find(params[:grocery_list_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def grocery_item_params
+    params.require(:grocery_item).permit(:grocery_list_id, :user_id, :name, :amount, :active)
+  end
 end
