@@ -2,7 +2,9 @@
   <% if @invitation.errors.any? %>
     <div id="error_explanation">
         <% @invitation.errors.each do |error| %>
-          <%= render "shared/alert", alert: error.full_message %>
+          <% if error.full_message == "Invitee must exist" %>
+            <%= render "shared/alert", alert: "Cannot send to that user" %>
+          <% end %>
         <% end %>
     </div>
   <% end %>
