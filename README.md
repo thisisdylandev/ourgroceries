@@ -14,7 +14,7 @@ A real-time, shareable shopping list application, built with Rails and Hotwire
   
 ## Authors
 
-- [@its-dgreen](https://www.github.com/its-dgreen)
+- [@thisisdylandev](https://www.github.com/thisisdylandev)
 
   
 ## Deployment
