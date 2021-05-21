@@ -15,6 +15,9 @@
     <%= render partial: "shared/navbar" %>
     <section class="flex h-screen w-full">
       <div class="w-1/2 mx-auto bg-white rounded shadow-lg p-8 my-6">
+        <% if flash[:notice] %>
+          <%= render "shared/notice", notice: notice %>
+        <% end %>
         <%= yield %>
       </div>
     </section>

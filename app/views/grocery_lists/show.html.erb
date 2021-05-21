@@ -1,11 +1,9 @@
-<%= render "shared/notice", notice: notice %>
-
 <h1 class="block w-full text-center text-xl mb-2 text-grey-600"><%= @grocery_list.name %></h1>
 
 <section class="flex">
-  <%= link_to 'Edit', edit_grocery_list_path(@grocery_list), class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
-  <%= link_to 'Share', new_grocery_list_invitation_path(@invitation.grocery_list, @invitation), class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
-  <%= link_to 'Delete', @grocery_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "flex-1 mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" %>
+  <%= link_to 'Edit', edit_grocery_list_path(@grocery_list), class: "flex-1 mx-1 text-center block bg-purple-500 hover:bg-purple-700 uppercase p-1 rounded" %>
+  <%= link_to 'Share', new_grocery_list_invitation_path(@invitation.grocery_list, @invitation), class: "flex-1 mx-1 text-center block bg-purple-500 hover:bg-purple-700 uppercase p-1 rounded" %>
+  <%= link_to 'Delete', @grocery_list, method: :delete, data: { confirm: 'Are you sure?' }, class: "flex-1 mx-1 text-center block bg-purple-500 hover:bg-purple-700 uppercase p-1 rounded" %>
 </section>
 
 <%= turbo_stream_from @grocery_list %>

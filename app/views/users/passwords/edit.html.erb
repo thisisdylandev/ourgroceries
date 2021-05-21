@@ -1,8 +1,8 @@
 <h2 class="block w-full text-center text-xl mb-6 text-grey-600">Edit Your Password</h2>
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: "mb-6"}) do |f| %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: "mb-6", 'data-turbo' => "false"}) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
-
+  
   <div class="field flex flex-col mb-4">
     <%= f.label :password, "New password", class: "text-lg text-grey-600" %><br />
     <% if @minimum_password_length %>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Change my password", class:"block bg-yellow-500 hover:bg-yellow-700 text-white uppercase text-lg mx-auto p-4 rounded" %>
+    <%= f.submit "Change my password", class:"block bg-purple-500 hover:bg-purple-700 text-white uppercase text-lg mx-auto p-4 rounded" %>
   </div>
 <% end %>
 <%= render "users/shared/links" %>

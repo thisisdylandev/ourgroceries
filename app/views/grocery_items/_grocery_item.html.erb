@@ -2,7 +2,7 @@
   <div class="flex mt-2 items-center">
     <h3 class="flex-1"><%= grocery_item.name %></h3>
     <p class="mr-5"><%= grocery_item.amount %></p>   
-    <%= link_to grocery_list_grocery_item_path(grocery_item.grocery_list, grocery_item), method: :delete, data: { confirm: 'Are you sure?' }, class: "mx-1 text-center block bg-yellow-500 hover:bg-yellow-700 uppercase p-1 rounded" do %>
+    <%= link_to grocery_list_grocery_item_path(grocery_item.grocery_list, grocery_item), method: :delete, data: { confirm: 'Are you sure?' }, class: "mx-1 text-center block bg-purple-500 hover:bg-purple-700 uppercase p-1 rounded" do %>
       <%= fa_icon "trash 2x" %>
     <% end %>
     </label>
