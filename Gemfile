@@ -62,3 +62,5 @@ gem "devise", "~> 4.8"
 gem "tailwindcss-rails", "~> 0.3.3"
 
 gem "font-awesome-rails", "~> 4.7"
+
+gem 'cloudinary'
