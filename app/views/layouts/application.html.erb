@@ -18,6 +18,9 @@
         <% if flash[:notice] %>
           <%= render "shared/notice", notice: notice %>
         <% end %>
+        <% if flash[:alert] %>
+          <%= render "shared/alert", alert: alert %>
+        <% end %>
         <%= yield %>
       </div>
     </section>

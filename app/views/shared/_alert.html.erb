@@ -1,0 +1,8 @@
+<% if alert %>
+  <div class="w-full m-auto justify-items-center flex">
+    <div id="alert" class="m-auto p-2 bg-red-500 items-center text-white lg:rounded-full flex lg:inline-flex mb-2" role="alert">
+      <span class="flex rounded-full bg-red-800 uppercase px-2 py-1 text-xs font-bold mr-3">!</span>
+      <span class="font-semibold mr-2 text-left flex-auto"><%= alert %></span>
+    </div>
+  </div>
+<% end %>

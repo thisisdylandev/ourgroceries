@@ -9,7 +9,8 @@ module.exports = {
         yellow: colors.amber,
         green: colors.emerald,
         purple: colors.violet,
-        white: colors.white
+        white: colors.white,
+        red: colors.red
       },
     },
   },
